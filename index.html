@@ -3,860 +3,753 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BeachSports — Summer 2026 Execution Plan</title>
+<title>BeachSports 2026 — Macy's Task Calendar</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --green:  #10b48a;
+  --green: #10b48a;
   --orange: #f37730;
-  --gold:   #fbac2b;
-  --text:   #6e6060;
-  --dark:   #2a1e1e;
-  --off:    #f7f5f2;
-  --offb:   #ede9e4;
-  --white:  #ffffff;
-  --red:    #e84545;
+  --gold: #fbac2b;
+  --red: #e03c3c;
+  --text: #6e6060;
+  --dark: #2a1e1e;
+  --off: #f7f5f2;
+  --offb: #ede9e4;
+  --white: #ffffff;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Jost',sans-serif;background:var(--off);color:var(--text);-webkit-font-smoothing:antialiased;}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-@keyframes progressFill{from{width:0;}to{width:var(--w);}}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--off); color: var(--text); -webkit-font-smoothing: antialiased; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
 
 /* ── LAYOUT ── */
-.app{display:flex;min-height:100vh;}
+.app { display: flex; min-height: 100vh; }
 
 /* ── SIDEBAR ── */
-.sidebar{
-  width:240px;flex-shrink:0;background:var(--dark);
-  position:sticky;top:0;height:100vh;
-  overflow-y:auto;display:flex;flex-direction:column;
-  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.07) transparent;
-}
-.sidebar::-webkit-scrollbar{width:3px;}
-.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);}
-
-.sb-brand{padding:26px 22px 18px;border-bottom:1px solid rgba(255,255,255,.07);}
-.sb-eye{font-size:.5rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
-.sb-title{font-size:1rem;font-weight:900;letter-spacing:-.5px;text-transform:uppercase;color:#fff;line-height:1.1;}
-.sb-title em{font-style:italic;color:var(--green);}
-.sb-sub{font-size:.6rem;color:rgba(255,255,255,.28);font-weight:300;margin-top:4px;}
-
-.sb-sec{padding:16px 22px 3px;font-size:.44rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.2);}
-
-.nav-item{
-  display:flex;align-items:center;gap:9px;
-  padding:8px 14px 8px 22px;margin-right:10px;
-  font-size:.72rem;font-weight:600;color:rgba(255,255,255,.42);
-  cursor:pointer;border-left:3px solid transparent;
-  border-radius:0 6px 6px 0;transition:all .2s;
-}
-.nav-item:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.05);}
-.nav-item.active{color:#fff;background:rgba(16,180,138,.13);border-left-color:var(--green);}
-.nav-item.active .ni{color:var(--green);}
-.ni{font-size:.9rem;width:16px;text-align:center;flex-shrink:0;}
-
-/* phase indicators */
-.phase-indicator{margin:8px 22px 4px;display:flex;align-items:center;gap:7px;}
-.phase-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.phase-dot.now{background:var(--green);animation:pulse 1.5s infinite;}
-.phase-dot.soon{background:var(--gold);}
-.phase-dot.summer{background:var(--orange);}
-.phase-label{font-size:.52rem;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:1px;text-transform:uppercase;}
-
-.sb-footer{margin-top:auto;padding:18px 22px;border-top:1px solid rgba(255,255,255,.07);}
-.sb-live{display:inline-flex;align-items:center;gap:6px;background:rgba(16,180,138,.12);border:1px solid rgba(16,180,138,.25);border-radius:50px;padding:4px 12px;font-size:.6rem;font-weight:700;color:var(--green);margin-bottom:8px;}
-.sb-ldot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
-.sb-info{font-size:.6rem;color:rgba(255,255,255,.25);font-weight:300;line-height:1.6;}
-.sb-info strong{color:var(--gold);}
+.sidebar { width: 220px; flex-shrink: 0; background: var(--dark); position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; scrollbar-width: thin; }
+.sb-brand { padding: 22px 18px 14px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.sb-eye { font-size: .46rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+.sb-title { font-size: .9rem; font-weight: 900; letter-spacing: -.5px; text-transform: uppercase; color: #fff; line-height: 1.1; }
+.sb-title em { font-style: italic; color: var(--green); }
+.sb-sub { font-size: .56rem; color: rgba(255,255,255,.22); font-weight: 300; margin-top: 3px; }
+.sb-sec { padding: 14px 18px 3px; font-size: .42rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.18); }
+.nav-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px 7px 18px; margin-right: 8px; font-size: .68rem; font-weight: 600; color: rgba(255,255,255,.38); cursor: pointer; border-left: 3px solid transparent; border-radius: 0 6px 6px 0; transition: all .2s; }
+.nav-item:hover { color: rgba(255,255,255,.72); background: rgba(255,255,255,.05); }
+.nav-item.active { color: #fff; background: rgba(16,180,138,.13); border-left-color: var(--green); }
+.ni { font-size: .82rem; width: 14px; text-align: center; flex-shrink: 0; }
+.sb-footer { margin-top: auto; padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.07); }
+.sb-live { display: inline-flex; align-items: center; gap: 6px; background: rgba(16,180,138,.12); border: 1px solid rgba(16,180,138,.25); border-radius: 50px; padding: 3px 10px; font-size: .56rem; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+.sb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+.sb-info { font-size: .56rem; color: rgba(255,255,255,.2); font-weight: 300; line-height: 1.6; }
+.sb-info strong { color: var(--gold); }
 
 /* ── MAIN ── */
-.main{flex:1;min-width:0;}
+.main { flex: 1; min-width: 0; }
 
 /* ── HERO ── */
-.hero{background:var(--dark);padding:48px 52px 40px;position:relative;overflow:hidden;}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green) 0%,var(--gold) 50%,var(--orange) 100%);}
-.hero-eye{font-size:.52rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:11px;display:flex;align-items:center;gap:8px;}
-.hero-eye::before{content:'';width:22px;height:2px;background:var(--green);}
-.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;letter-spacing:-2px;line-height:.92;text-transform:uppercase;color:#fff;margin-bottom:18px;}
-.hero h1 em{font-style:italic;color:var(--green);}
-.hero-meta{display:flex;flex-wrap:wrap;gap:8px;}
-.hpill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:50px;padding:4px 14px;font-size:.62rem;font-weight:700;color:rgba(255,255,255,.55);}
-.hpill strong{color:var(--gold);}
-.hpill.live{background:rgba(16,180,138,.15);border-color:rgba(16,180,138,.3);color:var(--green);}
-
-/* ── MOBILE NAV ── */
-.mob-nav{display:none;overflow-x:auto;background:var(--dark);border-bottom:2px solid rgba(255,255,255,.07);scrollbar-width:none;}
-.mob-nav::-webkit-scrollbar{display:none;}
-.mob-nav a{flex-shrink:0;padding:12px 15px;font-family:'Jost',sans-serif;font-size:.55rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.38);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;display:inline-block;}
-.mob-nav a.active{color:var(--green);border-bottom-color:var(--green);}
+.hero { background: var(--dark); padding: 40px 48px 32px; position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--gold), var(--orange)); }
+.hero-eye { font-size: .48rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--green); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
+.hero-eye::before { content: ''; width: 20px; height: 2px; background: var(--green); }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; letter-spacing: -2px; line-height: .92; text-transform: uppercase; color: #fff; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--green); }
+.hero-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 50px; padding: 3px 12px; font-size: .58rem; font-weight: 700; color: rgba(255,255,255,.5); }
+.pill strong { color: var(--gold); }
+.pill.live { background: rgba(16,180,138,.14); border-color: rgba(16,180,138,.28); color: var(--green); }
 
 /* ── PAGES ── */
-.page{display:none;padding:44px 52px 80px;background:var(--white);animation:fadeUp .3s ease;}
-.page.active{display:block;}
+.page { display: none; padding: 36px 48px 72px; background: var(--white); animation: fadeUp .25s ease; }
+.page.active { display: block; }
 
-/* page headers */
-.pg-hd{display:flex;gap:18px;align-items:flex-start;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--offb);}
-.pg-n{font-size:3.2rem;font-weight:900;letter-spacing:-3px;line-height:1;flex-shrink:0;color:var(--green);}
-.pg-n.orange{color:var(--orange);}
-.pg-n.gold{color:var(--gold);}
-.pg-n.dark{color:var(--dark);}
-.pg-eye{font-size:.48rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:5px;}
-.pg-eye.orange{color:var(--orange);}
-.pg-eye.gold{color:var(--gold);}
-.pg-ti{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;letter-spacing:-1px;text-transform:uppercase;color:var(--dark);line-height:.95;}
-.pg-ti em{font-style:italic;color:var(--green);}
-.pg-ti em.orange{color:var(--orange);}
-.pg-ti em.gold{color:var(--gold);}
-.pg-sb{font-size:.83rem;font-weight:300;color:var(--text);line-height:1.65;margin-top:6px;max-width:580px;}
+/* ── PAGE HEADER ── */
+.pg-hd { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--offb); }
+.pg-eye { font-size: .44rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+.pg-eye.o { color: var(--orange); }
+.pg-eye.g { color: #8a6200; }
+.pg-ti { font-size: clamp(1.2rem, 2.5vw, 1.7rem); font-weight: 900; letter-spacing: -1px; text-transform: uppercase; color: var(--dark); line-height: .95; }
+.pg-ti em { font-style: italic; color: var(--green); }
+.pg-ti em.o { color: var(--orange); }
+.pg-sb { font-size: .78rem; font-weight: 300; color: var(--text); line-height: 1.6; margin-top: 5px; max-width: 560px; }
 
-/* ── VISUAL TIMELINE ── */
-.timeline-wrap{position:relative;padding:8px 0 40px;}
+/* ── BADGES ── */
+.badge { font-size: .42rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 7px; border-radius: 50px; display: inline-block; }
+.badge.green { background: rgba(16,180,138,.1); color: var(--green); border: 1px solid rgba(16,180,138,.2); }
+.badge.orange { background: rgba(243,119,48,.1); color: var(--orange); border: 1px solid rgba(243,119,48,.2); }
+.badge.gold { background: rgba(251,172,43,.1); color: #7a5500; border: 1px solid rgba(251,172,43,.28); }
+.badge.dark { background: rgba(42,30,30,.07); color: var(--dark); border: 1px solid rgba(42,30,30,.12); }
+.badge.red { background: rgba(224,60,60,.1); color: var(--red); border: 1px solid rgba(224,60,60,.2); }
+.br { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
 
-.tl-months{display:flex;margin-bottom:20px;border-radius:10px;overflow:hidden;}
-.tl-month{flex:1;padding:10px 8px;text-align:center;font-size:.55rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
-.tl-month.now{background:rgba(16,180,138,.12);color:var(--green);}
-.tl-month.soon{background:rgba(251,172,43,.1);color:#8a6200;}
-.tl-month.active-m{background:rgba(243,119,48,.1);color:var(--orange);}
-.tl-month.done{background:var(--off);color:var(--text);opacity:.5;}
+/* ── MONTH BLOCK ── */
+.month { margin-bottom: 32px; }
+.month-hd { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.month-name { font-size: 1.6rem; font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase; color: var(--dark); line-height: 1; }
+.month-sub { font-size: .64rem; font-weight: 600; color: var(--text); opacity: .5; margin-top: 2px; }
+.month-line { flex: 1; height: 1px; background: var(--offb); }
+.month-count { font-size: .44rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 50px; flex-shrink: 0; }
+.month-count.g { background: rgba(16,180,138,.1); color: var(--green); border: 1px solid rgba(16,180,138,.2); }
+.month-count.gl { background: rgba(251,172,43,.09); color: #7a5500; border: 1px solid rgba(251,172,43,.22); }
+.month-count.o { background: rgba(243,119,48,.1); color: var(--orange); border: 1px solid rgba(243,119,48,.2); }
+.month-count.d { background: rgba(42,30,30,.07); color: var(--dark); border: 1px solid rgba(42,30,30,.12); }
 
-.tl-track{position:relative;height:6px;background:var(--offb);border-radius:3px;margin-bottom:32px;}
-.tl-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold));border-radius:3px;width:12%;animation:progressFill 1.2s ease forwards;--w:12%;}
-.tl-marker{position:absolute;top:-6px;transform:translateX(-50%);}
-.tl-marker-dot{width:18px;height:18px;border-radius:50%;border:3px solid var(--white);display:flex;align-items:center;justify-content:center;margin:0 auto 4px;}
-.tl-marker-dot.green{background:var(--green);}
-.tl-marker-dot.gold{background:var(--gold);}
-.tl-marker-dot.orange{background:var(--orange);}
-.tl-marker-dot.red{background:var(--red);}
-.tl-marker-dot.now{background:var(--green);animation:pulse 1.5s infinite;}
-.tl-marker-label{font-size:.46rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;text-align:center;margin-top:2px;}
-.tl-marker-date{font-size:.44rem;color:var(--text);font-weight:300;text-align:center;}
+/* ── TASK ROW ── */
+.task { display: grid; grid-template-columns: 90px 6px 1fr; gap: 12px; align-items: flex-start; padding: 11px 14px; background: var(--off); border-radius: 10px; margin-bottom: 7px; }
+.task.reg { background: rgba(243,119,48,.04); border: 1px solid rgba(243,119,48,.1); }
+.task.urgent { background: rgba(224,60,60,.04); border: 1px solid rgba(224,60,60,.1); }
+.task-date { font-size: .75rem; font-weight: 800; color: var(--dark); line-height: 1.3; }
+.task-day { font-size: .5rem; color: var(--text); opacity: .42; text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+.task-bar { width: 4px; border-radius: 4px; margin-top: 4px; min-height: 36px; align-self: stretch; flex-shrink: 0; }
+.task-bar.g { background: var(--green); }
+.task-bar.o { background: var(--orange); }
+.task-bar.r { background: var(--red); }
+.task-bar.gl { background: var(--gold); }
+.task-bar.d { background: #999; }
+.task-track { font-size: .41rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; display: inline-block; margin-bottom: 4px; }
+.task-track.mkt { background: rgba(16,180,138,.1); color: var(--green); }
+.task-track.reg-t { background: rgba(243,119,48,.1); color: var(--orange); }
+.task-track.cond { background: rgba(224,60,60,.08); color: var(--red); }
+.task-name { font-size: .82rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; line-height: 1.3; }
+.task-detail { font-size: .7rem; color: var(--text); font-weight: 300; line-height: 1.6; }
+.task-detail strong { font-weight: 700; color: var(--dark); }
 
-/* phase blocks */
-.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
-@media(max-width:700px){.phases{grid-template-columns:1fr 1fr;}}
+/* ── CHECKLIST (tasks page) ── */
+.phase { background: var(--off); border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+.phase-hd { padding: 14px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--offb); }
+.phase-hd.g { background: rgba(16,180,138,.07); }
+.phase-hd.gl { background: rgba(251,172,43,.06); }
+.phase-hd.o { background: rgba(243,119,48,.07); }
+.phase-hd.d { background: rgba(42,30,30,.04); }
+.phase-n { font-size: 1.2rem; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+.phase-hd.g .phase-n { color: var(--green); }
+.phase-hd.gl .phase-n { color: #8a6200; }
+.phase-hd.o .phase-n { color: var(--orange); }
+.phase-hd.d .phase-n { color: var(--dark); }
+.phase-label { font-size: .42rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; }
+.phase-hd.g .phase-label { color: var(--green); }
+.phase-hd.gl .phase-label { color: #8a6200; }
+.phase-hd.o .phase-label { color: var(--orange); }
+.phase-hd.d .phase-label { color: var(--dark); }
+.phase-title { font-size: .88rem; font-weight: 900; text-transform: uppercase; color: var(--dark); }
+.phase-body { padding: 12px 18px 14px; }
+.task-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--offb); cursor: pointer; }
+.task-item:last-child { border-bottom: none; }
+.task-item:hover .task-cb { border-color: var(--green); }
+.task-cb { width: 16px; height: 16px; border-radius: 4px; border: 2px solid var(--offb); flex-shrink: 0; margin-top: 2px; transition: all .15s; display: flex; align-items: center; justify-content: center; }
+.task-cb.checked { background: var(--green); border-color: var(--green); }
+.task-cb.checked::after { content: '✓'; font-size: .55rem; font-weight: 900; color: #fff; }
+.task-text { font-size: .78rem; font-weight: 300; color: var(--text); line-height: 1.55; flex: 1; }
+.task-text strong { font-weight: 700; color: var(--dark); }
+.task-text.done { text-decoration: line-through; opacity: .45; }
+.task-due { font-size: .44rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 7px; border-radius: 50px; flex-shrink: 0; margin-top: 3px; }
+.task-due.red { background: rgba(224,60,60,.1); color: var(--red); border: 1px solid rgba(224,60,60,.18); }
+.task-due.green { background: rgba(16,180,138,.1); color: var(--green); border: 1px solid rgba(16,180,138,.2); }
+.task-due.gold { background: rgba(251,172,43,.1); color: #7a5500; border: 1px solid rgba(251,172,43,.22); }
+.task-due.grey { background: rgba(42,30,30,.06); color: var(--text); border: 1px solid rgba(42,30,30,.1); }
 
-.phase{border-radius:12px;padding:18px 16px;border-top:3px solid var(--green);background:var(--off);}
-.phase.orange{border-top-color:var(--orange);}
-.phase.gold{border-top-color:var(--gold);}
-.phase.red{border-top-color:var(--red);}
-.phase-name{font-size:.52rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
-.phase.orange .phase-name{color:var(--orange);}
-.phase.gold   .phase-name{color:#8a6200;}
-.phase.red    .phase-name{color:var(--red);}
-.phase-dates{font-size:.85rem;font-weight:900;letter-spacing:-.3px;color:var(--dark);margin-bottom:6px;}
-.phase-tasks{font-size:.72rem;color:var(--text);font-weight:300;line-height:1.65;}
-.phase-tasks strong{font-weight:700;color:var(--dark);}
-.phase-count{display:inline-block;margin-top:8px;font-size:.5rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:50px;background:rgba(16,180,138,.1);color:var(--green);border:1px solid rgba(16,180,138,.2);}
-.phase.orange .phase-count{background:rgba(243,119,48,.1);color:var(--orange);border-color:rgba(243,119,48,.2);}
-.phase.gold   .phase-count{background:rgba(251,172,43,.1);color:#8a6200;border-color:rgba(251,172,43,.25);}
-.phase.red    .phase-count{background:rgba(232,69,69,.1);color:var(--red);border-color:rgba(232,69,69,.2);}
+/* ── NOTE BOX ── */
+.note { border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; }
+.note.green { background: linear-gradient(135deg,rgba(16,180,138,.07),rgba(16,180,138,.01)); border: 1px solid rgba(16,180,138,.16); }
+.note.orange { background: linear-gradient(135deg,rgba(243,119,48,.07),rgba(243,119,48,.01)); border: 1px solid rgba(243,119,48,.15); }
+.note.gold { background: linear-gradient(135deg,rgba(251,172,43,.07),rgba(251,172,43,.01)); border: 1px solid rgba(251,172,43,.18); }
+.note h4 { font-size: .66rem; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
+.note.green h4 { color: var(--green); }
+.note.orange h4 { color: var(--orange); }
+.note.gold h4 { color: #8a6200; }
+.note p { font-size: .76rem; line-height: 1.7; font-weight: 300; color: var(--text); }
+.note p strong { font-weight: 700; color: var(--dark); }
 
-/* ── TASK BOARD ── */
-.owner-tabs{display:flex;gap:0;border-bottom:2px solid var(--offb);margin-bottom:24px;overflow-x:auto;scrollbar-width:none;}
-.owner-tabs::-webkit-scrollbar{display:none;}
-.otab{background:none;border:none;border-bottom:3px solid transparent;font-family:'Jost',sans-serif;font-size:.56rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text);opacity:.4;padding:11px 16px;cursor:pointer;white-space:nowrap;margin-bottom:-2px;transition:all .2s;}
-.otab:hover{opacity:.7;}
-.otab.active{opacity:1;color:var(--green);border-bottom-color:var(--green);}
-.otab.orange.active{color:var(--orange);border-bottom-color:var(--orange);}
-.otab.gold.active{color:#8a6200;border-bottom-color:var(--gold);}
+/* ── RHYTHM TABLE ── */
+.rhythm { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.rhythm th { font-size: .44rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--text); opacity: .5; padding: 6px 12px; text-align: left; background: var(--off); }
+.rhythm td { font-size: .76rem; font-weight: 300; color: var(--text); padding: 10px 12px; border-top: 1px solid var(--offb); vertical-align: top; line-height: 1.55; }
+.rhythm td strong { font-weight: 700; color: var(--dark); }
+.rhythm tr:hover td { background: rgba(16,180,138,.03); }
 
-.task-view{display:none;}
-.task-view.active{display:block;}
-
-.task-group{margin-bottom:24px;}
-.tg-label{font-size:.52rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.tg-label::before{content:'';width:16px;height:2px;background:var(--green);flex-shrink:0;}
-.tg-label.orange{color:var(--orange);}
-.tg-label.orange::before{background:var(--orange);}
-.tg-label.gold{color:#8a6200;}
-.tg-label.gold::before{background:var(--gold);}
-
-.task{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--off);border-radius:9px;margin-bottom:7px;transition:transform .2s,box-shadow .2s;}
-.task:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(110,96,96,.09);}
-.task-check{width:18px;height:18px;border-radius:5px;border:2px solid var(--offb);flex-shrink:0;margin-top:1px;cursor:pointer;accent-color:var(--green);}
-.task-body{flex:1;}
-.task-title{font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:3px;line-height:1.3;}
-.task-desc{font-size:.73rem;color:var(--text);font-weight:300;line-height:1.55;}
-.task-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
-.task-tag{font-size:.46rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:50px;}
-.task-tag.green{background:rgba(16,180,138,.1);color:var(--green);border:1px solid rgba(16,180,138,.22);}
-.task-tag.orange{background:rgba(243,119,48,.1);color:var(--orange);border:1px solid rgba(243,119,48,.22);}
-.task-tag.gold{background:rgba(251,172,43,.1);color:#7a5500;border:1px solid rgba(251,172,43,.3);}
-.task-tag.red{background:rgba(232,69,69,.1);color:var(--red);border:1px solid rgba(232,69,69,.2);}
-.task-tag.dark{background:rgba(42,30,30,.07);color:var(--dark);border:1px solid rgba(42,30,30,.13);}
-.task-due{font-size:.46rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text);opacity:.5;margin-left:auto;white-space:nowrap;padding-top:2px;}
-.task-due.urgent{color:var(--red);opacity:1;}
-
-/* ── WEEKLY RHYTHM ── */
-.week-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-@media(max-width:640px){.week-grid{grid-template-columns:1fr;}}
-
-.day-card{background:var(--off);border-radius:12px;padding:18px 18px 16px;border-top:3px solid var(--green);}
-.day-card.orange{border-top-color:var(--orange);}
-.day-card.gold{border-top-color:var(--gold);}
-.day-card.dark{border-top-color:var(--dark);}
-.day-name{font-size:.82rem;font-weight:900;text-transform:uppercase;letter-spacing:-.1px;color:var(--dark);margin-bottom:3px;}
-.day-tag{font-size:.48rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
-.day-card.orange .day-tag{color:var(--orange);}
-.day-card.gold   .day-tag{color:#8a6200;}
-.day-card.dark   .day-tag{color:var(--dark);}
-.day-tasks{list-style:none;}
-.day-tasks li{font-size:.78rem;color:var(--text);font-weight:300;line-height:1.6;padding:5px 0 5px 16px;border-bottom:1px solid var(--offb);position:relative;}
-.day-tasks li:last-child{border-bottom:none;}
-.day-tasks li::before{content:'›';position:absolute;left:2px;color:var(--green);font-weight:700;}
-.day-card.orange .day-tasks li::before{color:var(--orange);}
-.day-card.gold   .day-tasks li::before{color:var(--gold);}
-.day-tasks li strong{font-weight:700;color:var(--dark);}
-.day-time{font-size:.65rem;font-weight:700;color:var(--text);opacity:.45;float:right;margin-top:1px;}
-
-/* ── TOOLS ── */
-.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
-@media(max-width:640px){.tools-grid{grid-template-columns:1fr 1fr;}}
-
-.tool-card{background:var(--off);border-radius:12px;padding:18px 16px;border-top:3px solid var(--green);transition:transform .25s;}
-.tool-card:hover{transform:translateY(-3px);}
-.tool-card.orange{border-top-color:var(--orange);}
-.tool-card.gold{border-top-color:var(--gold);}
-.tool-card.red{border-top-color:var(--red);}
-.tool-card.dark{border-top-color:var(--dark);}
-.tool-ico{font-size:1.6rem;margin-bottom:8px;}
-.tool-name{font-size:.82rem;font-weight:900;text-transform:uppercase;color:var(--dark);margin-bottom:3px;}
-.tool-status{font-size:.48rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
-.tool-status.ready{color:var(--green);}
-.tool-status.setup{color:var(--orange);}
-.tool-status.activate{color:var(--gold);}
-.tool-status.new{color:var(--red);}
-.tool-body{font-size:.75rem;line-height:1.65;color:var(--text);font-weight:300;}
-.tool-body strong{font-weight:700;color:var(--dark);}
-.tool-action{margin-top:10px;font-size:.65rem;font-weight:700;color:var(--green);display:flex;align-items:center;gap:5px;}
-.tool-card.orange .tool-action{color:var(--orange);}
-.tool-card.gold   .tool-action{color:#8a6200;}
-
-/* ── PITCH FLOW ── */
-.pitch-steps{counter-reset:step;}
-.pitch-step{display:flex;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--offb);}
-.pitch-step:last-child{border-bottom:none;}
-.pitch-step-n{width:40px;height:40px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;color:#fff;flex-shrink:0;letter-spacing:-1px;}
-.pitch-step.orange .pitch-step-n{background:var(--orange);}
-.pitch-step.gold   .pitch-step-n{background:#c88a00;}
-.pitch-step-body{flex:1;}
-.pitch-step-title{font-size:.92rem;font-weight:900;text-transform:uppercase;letter-spacing:-.2px;color:var(--dark);margin-bottom:5px;}
-.pitch-step-desc{font-size:.8rem;line-height:1.72;color:var(--text);font-weight:300;}
-.pitch-step-desc strong{font-weight:700;color:var(--dark);}
-.pitch-time{font-size:.52rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(42,30,30,.35);margin-top:6px;}
-
-/* ── INSIGHTS ── */
-.insight{border-radius:12px;padding:16px 18px;margin-bottom:14px;}
-.insight.green{background:linear-gradient(135deg,rgba(16,180,138,.07),rgba(16,180,138,.01));border:1px solid rgba(16,180,138,.18);}
-.insight.orange{background:linear-gradient(135deg,rgba(243,119,48,.07),rgba(243,119,48,.01));border:1px solid rgba(243,119,48,.18);}
-.insight.gold{background:linear-gradient(135deg,rgba(251,172,43,.08),rgba(251,172,43,.01));border:1px solid rgba(251,172,43,.22);}
-.insight h4{font-size:.72rem;font-weight:900;text-transform:uppercase;margin-bottom:6px;}
-.insight.green h4{color:var(--green);}
-.insight.orange h4{color:var(--orange);}
-.insight.gold h4{color:#8a6200;}
-.insight p,.insight li{font-size:.8rem;line-height:1.72;color:var(--text);font-weight:300;}
-.insight p strong,.insight li strong{font-weight:700;color:var(--dark);}
-.insight ul{padding-left:16px;}
-.insight li{margin-bottom:3px;}
-
-.divider{border:none;border-top:1px solid var(--offb);margin:24px 0;}
-
-/* ── CAMP WEEK ROWS ── */
-.camp-weeks{margin-top:8px;}
-.week-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--off);border-radius:9px;margin-bottom:7px;transition:transform .2s;}
-.week-row:hover{transform:translateX(3px);}
-.week-num{font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text);opacity:.4;width:52px;flex-shrink:0;}
-.week-dates{font-size:.8rem;font-weight:700;color:var(--dark);width:130px;flex-shrink:0;}
-.week-bar-wrap{flex:1;height:6px;background:var(--offb);border-radius:3px;overflow:hidden;}
-.week-bar{height:100%;border-radius:3px;background:var(--green);}
-.week-tasks{font-size:.7rem;color:var(--text);font-weight:300;flex:2;}
-.week-tasks strong{font-weight:700;color:var(--dark);}
-
-/* ── RESPONSIVE ── */
-@media(max-width:820px){
-  .sidebar{display:none;}
-  .mob-nav{display:flex;}
-  .hero,.page{padding-left:24px;padding-right:24px;}
+/* ── MOBILE ── */
+@media (max-width: 800px) {
+  .sidebar { display: none; }
+  .hero, .page { padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- ══════════ SIDEBAR ══════════ -->
+<!-- SIDEBAR -->
 <nav class="sidebar">
   <div class="sb-brand">
     <div class="sb-eye">BeachSports · 2026</div>
-    <div class="sb-title">Execution <em>Plan</em></div>
-    <div class="sb-sub">Macy Fitzpatrick · Marketing</div>
+    <div class="sb-title">Macy's <em>Task</em> Calendar</div>
+    <div class="sb-sub">Summer 2026 · South Bay</div>
   </div>
-
-  <div class="sb-sec">Navigate</div>
-  <div class="nav-item active" onclick="go('overview',this)"><span class="ni">🏄</span> Overview</div>
-  <div class="nav-item" onclick="go('timeline',this)"><span class="ni">📅</span> Timeline</div>
-  <div class="nav-item" onclick="go('tasks',this)"><span class="ni">✅</span> Task Board</div>
-  <div class="nav-item" onclick="go('rhythm',this)"><span class="ni">🔁</span> Weekly Rhythm</div>
-  <div class="nav-item" onclick="go('tools',this)"><span class="ni">🛠️</span> Marketing Tools</div>
-  <div class="nav-item" onclick="go('campweeks',this)"><span class="ni">🌊</span> Camp Weeks</div>
-  <div class="nav-item" onclick="go('pitch',this)"><span class="ni">🎯</span> Monday Pitch</div>
-
-  <div class="sb-sec">Phases</div>
-  <div class="phase-indicator"><div class="phase-dot now"></div><div class="phase-label">Now — Apr · Pre-season</div></div>
-  <div class="phase-indicator"><div class="phase-dot soon"></div><div class="phase-label">May · Community push</div></div>
-  <div class="phase-indicator"><div class="phase-dot summer"></div><div class="phase-label">Jun 9 → Aug 29 · Camp</div></div>
-
+  <div class="sb-sec">Views</div>
+  <div class="nav-item active" onclick="go('calendar',this)"><span class="ni">📅</span> Send Calendar</div>
+  <div class="nav-item" onclick="go('tasks',this)"><span class="ni">✅</span> Task Checklist</div>
+  <div class="nav-item" onclick="go('rhythm',this)"><span class="ni">🔄</span> Weekly Rhythm</div>
   <div class="sb-footer">
-    <div class="sb-live"><span class="sb-ldot"></span> Registration Open</div>
-    <div class="sb-info">Camp starts: <strong>June 9</strong><br>Camp ends: <strong>Aug 29</strong><br>Presenter: <strong>Macy</strong></div>
+    <div class="sb-live"><span class="sb-dot"></span> Registration Open</div>
+    <div class="sb-info">Camp: <strong>Jun 9 – Aug 29</strong><br>Owner: <strong>Macy Fitzpatrick</strong><br>Approver: <strong>Tommy</strong></div>
   </div>
 </nav>
 
-<!-- ══════════ MAIN ══════════ -->
+<!-- MAIN -->
 <main class="main">
 
-  <div class="hero">
-    <div class="hero-eye">Summer 2026 · Execution Plan</div>
-    <h1>From Strategy<br><em>to Action</em></h1>
-    <div class="hero-meta">
-      <div class="hpill live">⚡ Registration Open Now</div>
-      <div class="hpill">Camp: <strong>June 9 – Aug 29</strong></div>
-      <div class="hpill">Owner: <strong>Macy Fitzpatrick</strong></div>
-      <div class="hpill">Approver: <strong>Tommy</strong></div>
-      <div class="hpill">4 Parts · 11 Email Segments · 2 Paid Ads</div>
+<div class="hero">
+  <div class="hero-eye">Summer 2026 · South Bay</div>
+  <h1>Macy's<br><em>Task Calendar</em></h1>
+  <div class="hero-pills">
+    <div class="pill live">⚡ Registration Open</div>
+    <div class="pill">Camp: <strong>Jun 9 – Aug 29</strong></div>
+    <div class="pill">8 email segments · 2 paid ad campaigns</div>
+    <div class="pill">All sends approved by <strong>Tommy</strong></div>
+  </div>
+</div>
+
+<!-- ══════════ SEND CALENDAR ══════════ -->
+<section id="p-calendar" class="page active">
+  <div class="pg-hd">
+    <div class="pg-eye">View 1</div>
+    <div class="pg-ti">Send <em>Calendar</em></div>
+    <div class="pg-sb">Every send in chronological order. <span style="color:var(--green);font-weight:700;">Green = marketing outreach.</span> <span style="color:var(--orange);font-weight:700;">Orange = registered family (automated).</span> Red = urgent or conditional.</div>
+  </div>
+
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:6px;font-size:.64rem;font-weight:600;color:var(--text);"><div style="width:8px;height:8px;border-radius:50%;background:var(--green);"></div> Marketing outreach</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:.64rem;font-weight:600;color:var(--text);"><div style="width:8px;height:8px;border-radius:50%;background:var(--orange);"></div> Registered family (auto)</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:.64rem;font-weight:600;color:var(--text);"><div style="width:8px;height:8px;border-radius:50%;background:var(--red);"></div> Priority / conditional</div>
+  </div>
+
+  <!-- APRIL -->
+  <div class="month">
+    <div class="month-hd">
+      <div><div class="month-name">April</div><div class="month-sub">Pre-season · Lifecycle + re-engagement + registered welcome</div></div>
+      <div class="month-line"></div>
+      <div class="month-count g">7 Sends</div>
+    </div>
+
+    <div class="task urgent">
+      <div><div class="task-date">Apr 4</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar r"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 03 · Highest Priority</div>
+        <div class="task-name">Lapsed 2025 — "We saved a spot for [Name] 🌊"</div>
+        <div class="task-detail">CampBrain: last reg 2025, no 2026 reg → sort by program → export → Constant Contact. Warm tone, reference their 2025 program, one CTA only. <strong>1 email only — if no open or registration, do not follow up.</strong></div>
+      </div>
+    </div>
+
+    <div class="task urgent">
+      <div><div class="task-date">Apr 4</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar r"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 01</div>
+        <div class="task-name">Beach → Full Programs — "[Name] just unlocked something big 🏄"</div>
+        <div class="task-detail">CampBrain: DOB Jan 1–Dec 31, 2019 + Beach history only → export. One photo per newly eligible program + direct link to each. Under 150 words.</div>
+      </div>
+    </div>
+
+    <div class="task reg">
+      <div><div class="task-date">On reg</div><div class="task-day">Immediate</div></div>
+      <div class="task-bar o"></div>
+      <div>
+        <div class="task-track reg-t">Registered · Auto · Active Campaign</div>
+        <div class="task-name">Email 1 — "You're In! Welcome to BeachSports 2026 ⛱️"</div>
+        <div class="task-detail">Fires immediately after registration. Program, location, dates, confirmation #. Previews upcoming emails. No action needed from family.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Mid April</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 06 · Touch 1</div>
+        <div class="task-name">Expo + Event Leads — "Great meeting you 🌊"</div>
+        <div class="task-detail">Import all event-collected emails into Constant Contact as their own list. Social proof intro — 2 testimonials + great photo. <strong>No pitch, no urgency.</strong> Build trust first.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Apr 18</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 02</div>
+        <div class="task-name">Skate Age Unlock + Saturday Sessions — "Old enough to shred 🛹"</div>
+        <div class="task-detail">CampBrain: DOB Jan 1–Dec 31, 2021 + Beach history → export. <strong>Two CTAs:</strong> try a Saturday session first → or book a full week. Photo of Hermosa skate park.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Apr 25</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 04</div>
+        <div class="task-name">Lapsed 2023–2024 — "A lot has changed at BeachSports 👇"</div>
+        <div class="task-detail">CampBrain: last reg 2023–2024, no 2025/2026 reg. Lead with what's new + best testimonial. No urgency. <strong>1 email only — if no response, do not follow up.</strong></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Apr 25</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 05</div>
+        <div class="task-name">Single-Week Bookers → 10% Multi-Week Discount</div>
+        <div class="task-detail">CampBrain: 1 week/summer history → export. "Book 2+ weeks, save 10% — returning families only." Frame as a loyalty reward, not a discount.</div>
+      </div>
     </div>
   </div>
 
-  <div class="mob-nav">
-    <a class="active" onclick="go('overview',this)">Overview</a>
-    <a onclick="go('timeline',this)">Timeline</a>
-    <a onclick="go('tasks',this)">Tasks</a>
-    <a onclick="go('rhythm',this)">Rhythm</a>
-    <a onclick="go('tools',this)">Tools</a>
-    <a onclick="go('campweeks',this)">Camp Weeks</a>
-    <a onclick="go('pitch',this)">Pitch</a>
+  <!-- MAY -->
+  <div class="month">
+    <div class="month-hd">
+      <div><div class="month-name">May</div><div class="month-sub">Expo leads Touch 2 · School flyers · Registered Emails 2 + 3</div></div>
+      <div class="month-line"></div>
+      <div class="month-count gl">4 Sends</div>
+    </div>
+
+    <div class="task reg">
+      <div><div class="task-date">21 days pre-camp</div><div class="task-day">Date trigger</div></div>
+      <div class="task-bar o"></div>
+      <div>
+        <div class="task-track reg-t">Registered · Auto · Active Campaign</div>
+        <div class="task-name">Email 2 — Meet Your Location Director</div>
+        <div class="task-detail">Trigger: 21 days before their camp start date. LD intro, years at BS, personal quote. P.S.: merch shop + Walker's Catering. Choose Option A (LD focus), B (community), or C (direct from LD). <strong>Families who register within 21 days of camp skip this email.</strong></div>
+      </div>
+    </div>
+
+    <div class="task reg">
+      <div><div class="task-date">5 days pre-camp</div><div class="task-day">Date trigger</div></div>
+      <div class="task-bar o"></div>
+      <div>
+        <div class="task-track reg-t">Registered · Auto · Active Campaign</div>
+        <div class="task-name">Email 3 — What to Expect</div>
+        <div class="task-detail">Trigger: 5 days before their camp start date. Drop-off, packing list, daily schedule, early drop-off option. Choose D1 (comprehensive), D2 (excitement first), or D3 (FAQ). <strong>Last-minute signups (within 5 days): fire a condensed "quick prep" email immediately on registration instead.</strong></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">May 30</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 06 · Touch 2</div>
+        <div class="task-name">Expo + Event Leads — "This is what BeachSports is all about 🏄"</div>
+        <div class="task-detail">All 5 programs listed with ages + locations. Best action photo from recent events. Direct registration link. Show the full picture in one email. <strong>To: expo leads who haven't registered yet.</strong></div>
+      </div>
+    </div>
   </div>
 
-  <!-- ══ OVERVIEW ══ -->
-  <section id="p-overview" class="page active">
-    <div class="pg-hd">
-      <div class="pg-n">🏄</div>
+  <!-- JUNE -->
+  <div class="month">
+    <div class="month-hd">
+      <div><div class="month-name">June</div><div class="month-sub">Camp starts Jun 9 · Registered Emails 4 + 5 · Urgency (conditional)</div></div>
+      <div class="month-line"></div>
+      <div class="month-count o">5–6 Sends</div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Jun 6</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
       <div>
-        <div class="pg-eye">The Big Picture</div>
-        <div class="pg-ti">Execution <em>Overview</em></div>
-        <div class="pg-sb">Everything needed to sell out every camp week across Redondo, Hermosa, and Manhattan Beach — owned by Macy, approved by Tommy, supported by Lisa and the Location Directors.</div>
+        <div class="task-track mkt">Marketing</div>
+        <div class="task-name">Pre-Camp Hype — "Summer starts Monday 🌊"</div>
+        <div class="task-detail">To all registered families + last-chance open spot CTA. What to expect, what to bring. Builds excitement, reduces first-day anxiety.</div>
       </div>
     </div>
 
-    <div class="insight green">
-      <h4>What "Sold Out" Requires</h4>
-      <p>Three things running simultaneously: <strong>segmented emails</strong> converting warm leads before summer starts, <strong>community presence</strong> (schools, NextDoor, Facebook) generating new awareness, and a <strong>real-time gap-fill engine</strong> that ensures no open spot sits longer than 72 hours once camp begins June 9.</p>
-    </div>
-
-    <div class="phases">
-      <div class="phase">
-        <div class="phase-name">Now → Apr</div>
-        <div class="phase-dates">Mar 19 – Apr 30</div>
-        <div class="phase-tasks">Set up tools. Send lifecycle emails. Launch Google Ads. Contact foundation partners. <strong>This is the highest-leverage window.</strong></div>
-        <div class="phase-count">6 tasks this week</div>
-      </div>
-      <div class="phase gold">
-        <div class="phase-name">May</div>
-        <div class="phase-dates">May 1 – Jun 8</div>
-        <div class="phase-tasks">School flyer distribution. Program spotlight emails. Instagram ramp-up. <strong>Build anticipation before doors open.</strong></div>
-        <div class="phase-count">5 key actions</div>
-      </div>
-      <div class="phase orange">
-        <div class="phase-name">Camp Season</div>
-        <div class="phase-dates">Jun 9 – Aug 29</div>
-        <div class="phase-tasks">Weekly Spot Check every Monday. Daily Stories. Kid of the Week. Real-time gap fill. <strong>The engine runs itself if set up right.</strong></div>
-        <div class="phase-count">12 camp weeks</div>
-      </div>
-      <div class="phase red">
-        <div class="phase-name">Close Out</div>
-        <div class="phase-dates">Aug 22 – Aug 29</div>
-        <div class="phase-tasks">Thank-you campaign. 2027 waitlist email. Google review push. Debrief. <strong>Lock in next year while families are happiest.</strong></div>
-        <div class="phase-count">4 final sends</div>
-      </div>
-    </div>
-
-    <div class="insight orange">
-      <h4>Macy's Role — Everything Marketing</h4>
-      <ul>
-        <li><strong>Email:</strong> Draft, segment, and send all campaigns via Constant Contact / Active Campaign</li>
-        <li><strong>Social:</strong> Daily Instagram Stories during camp, 4–5 feed posts/week, Kid of the Week every Friday</li>
-        <li><strong>Content:</strong> Shoot content at camp, coordinate daily video clips from Location Directors</li>
-        <li><strong>Ads:</strong> Set up and manage Google Ads + Meta Ads Manager</li>
-        <li><strong>Community:</strong> Run NextDoor, Facebook groups, Marketplace listing</li>
-        <li><strong>Schools:</strong> Coordinate flyer distribution through foundation partners and internal connections</li>
-        <li><strong>Reporting:</strong> Weekly Monday check-in — enrollment gaps, email performance, ad spend</li>
-      </ul>
-    </div>
-
-    <div class="insight gold">
-      <h4>Tommy Approves</h4>
-      <p>All email sends, paid ad creative, and any content featuring staff or campers go to Tommy for approval before publishing. <strong>Turnaround needed: 24 hours max</strong> to keep the weekly rhythm on schedule. Macy submits Friday for Monday sends.</p>
-    </div>
-  </section>
-
-  <!-- ══ TIMELINE ══ -->
-  <section id="p-timeline" class="page">
-    <div class="pg-hd">
-      <div class="pg-n">📅</div>
+    <div class="task reg">
+      <div><div class="task-date">2 wks pre-camp</div><div class="task-day">Date trigger</div></div>
+      <div class="task-bar o"></div>
       <div>
-        <div class="pg-eye">Visual Timeline</div>
-        <div class="pg-ti">Deadlines + <em>Milestones</em></div>
-        <div class="pg-sb">Every key date from today through the last day of camp. Color-coded by urgency — green is now, gold is soon, orange is camp season, red is critical deadline.</div>
+        <div class="task-track reg-t">Registered · Auto · Active Campaign</div>
+        <div class="task-name">Email 4 — Day One Logistics</div>
+        <div class="task-detail">Trigger: 2 weeks before their camp start date. Drop-off time + location, packing list, schedule, parking, early drop-off. Choose D1, D2, or D3. A/B tip: D1 for new families, D2 for returning.</div>
       </div>
     </div>
 
-    <div class="timeline-wrap">
-      <div class="tl-months">
-        <div class="tl-month now">Mar ← Now</div>
-        <div class="tl-month soon">April</div>
-        <div class="tl-month soon">May</div>
-        <div class="tl-month active-m">June</div>
-        <div class="tl-month active-m">July</div>
-        <div class="tl-month active-m">August</div>
-      </div>
-
-      <div class="tl-track">
-        <div class="tl-fill"></div>
-        <div class="tl-marker" style="left:2%">
-          <div class="tl-marker-dot now"></div>
-          <div class="tl-marker-label" style="color:var(--green)">Today</div>
-          <div class="tl-marker-date">Mar 19</div>
-        </div>
-        <div class="tl-marker" style="left:20%">
-          <div class="tl-marker-dot gold"></div>
-          <div class="tl-marker-label" style="color:#8a6200">Flyers</div>
-          <div class="tl-marker-date">Apr 25</div>
-        </div>
-        <div class="tl-marker" style="left:34%">
-          <div class="tl-marker-dot gold"></div>
-          <div class="tl-marker-label" style="color:#8a6200">Schools</div>
-          <div class="tl-marker-date">May 12</div>
-        </div>
-        <div class="tl-marker" style="left:48%">
-          <div class="tl-marker-dot orange"></div>
-          <div class="tl-marker-label" style="color:var(--orange)">Camp Starts</div>
-          <div class="tl-marker-date">Jun 9</div>
-        </div>
-        <div class="tl-marker" style="left:66%">
-          <div class="tl-marker-dot orange"></div>
-          <div class="tl-marker-label" style="color:var(--orange)">Friend Week</div>
-          <div class="tl-marker-date">Jul 14</div>
-        </div>
-        <div class="tl-marker" style="left:88%">
-          <div class="tl-marker-dot red"></div>
-          <div class="tl-marker-label" style="color:var(--red)">Last Week</div>
-          <div class="tl-marker-date">Aug 25</div>
-        </div>
-        <div class="tl-marker" style="left:97%">
-          <div class="tl-marker-dot red"></div>
-          <div class="tl-marker-label" style="color:var(--red)">2027 Email</div>
-          <div class="tl-marker-date">Aug 29</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Deadline cards -->
-    <div class="task-group">
-      <div class="tg-label">This Week — Do Now</div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send lapsed 2024 families email</div><div class="task-desc">Pull from CampBrain: last reg year = 2024, no 2026 registration. Subject: "We saved a spot for [Name] 🌊". This is the highest ROI send in the entire plan.</div><div class="task-meta"><span class="task-tag red">Urgent</span><span class="task-tag green">Macy</span><span class="task-tag dark">Constant Contact</span><div class="task-due urgent">Due: This week</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send Beach → Full Programs age unlock email</div><div class="task-desc">CampBrain filter: DOB 2019, Beach history only. Subject: "[Name] just unlocked something big 🏄". Est. 50–150 families, 25–40% conversion expected.</div><div class="task-meta"><span class="task-tag red">Urgent</span><span class="task-tag green">Macy</span><span class="task-tag dark">Active Campaign</span><div class="task-due urgent">Due: This week</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Set up NextDoor Business profile</div><div class="task-desc">nextdoor.com/business → BeachSports → 112 Arena St, El Segundo → Recreation/Camps → verify. Free. 15 minutes.</div><div class="task-meta"><span class="task-tag red">Urgent</span><span class="task-tag green">Macy</span><div class="task-due urgent">Due: Today</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Post Facebook Marketplace Services listing</div><div class="task-desc">From BeachSports FB page → Marketplace → Services → Recreation. 3–5 camp photos, description, price, registration link. Free. Relist every 10 days.</div><div class="task-meta"><span class="task-tag red">Urgent</span><span class="task-tag green">Macy</span><span class="task-tag dark">Meta Business Suite</span><div class="task-due urgent">Due: Today</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Reactivate Google Analytics</div><div class="task-desc">Log in to GA4, confirm beachsports.com is tracking, set up a Goal for registration page visits. Needed before Google Ads launches to track conversions properly.</div><div class="task-meta"><span class="task-tag red">Urgent</span><span class="task-tag green">Macy</span><span class="task-tag dark">Google Analytics</span><div class="task-due urgent">Due: This week</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Pin registration link in Instagram bio + first Story Highlight</div><div class="task-desc">Bio link → registration page (not homepage). Create a "Register" Story Highlight with a cover graphic. Every profile visit should have a clear path to sign up.</div><div class="task-meta"><span class="task-tag red">Urgent</span><span class="task-tag green">Macy</span><span class="task-tag dark">Instagram</span><div class="task-due urgent">Due: Today</div></div></div></div>
-    </div>
-
-    <div class="task-group">
-      <div class="tg-label gold">April — Before May 1</div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Launch Google Search Ads</div><div class="task-desc">Set up campaign targeting "surf camp [city]", "kids summer camp South Bay" etc. $150–200/mo. Send clicks to program pages, not homepage. Install Google Ads conversion tag.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><span class="task-tag dark">Google Ads</span><span class="task-tag dark">Tommy Approves</span><div class="task-due">Due: Apr 7</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Launch Instagram Feed awareness ad</div><div class="task-desc">Meta Ads Manager → Awareness campaign → Parents 28–45 → 10mi from Manhattan Beach → Exclude current followers → $100–150/mo. Use best camp photo, no text overlay.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><span class="task-tag dark">Meta Ads</span><span class="task-tag dark">Tommy Approves</span><div class="task-due">Due: Apr 7</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send Skate Age Unlock email (child turns 5)</div><div class="task-desc">CampBrain: DOB 2021. Subject: "[Name] is officially old enough to shred 🛹". Lead with Hermosa skate park, coaches, fun. Est. 30–80 families.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><div class="task-due">Due: Apr 14</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send CIT Pipeline email (child turns 14)</div><div class="task-desc">CampBrain: DOB 2012, 3+ years attendance. Subject: "Is [Name] ready to go from camper to coach?" Send to parents AND teen if email available.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><div class="task-due">Due: Apr 14</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send Multi-Child Families email</div><div class="task-desc">CampBrain: 2+ children. Subject: "Your crew can all go at the same time — here's how". Show simultaneous enrollment at same location. Est. 100–200 families.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><div class="task-due">Due: Apr 21</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Contact MBEF, RBEF, HBEF, AMS for May flyer distribution</div><div class="task-desc">Email ED of each foundation. Reference donation history. Ask for May bag stuffing or newsletter inclusion. Pre-write the email — make it a 30-second yes for them.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><div class="task-due">Due: Apr 7</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Design + print school flyers in Canva</div><div class="task-desc">Double-sided: programs + QR code (front), summer checklist (back). Print 500–1,000 at Costco Business Center (~$50–80). Have them ready by Apr 30 for May distribution.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag green">Macy</span><span class="task-tag dark">Canva</span><div class="task-due">Due: Apr 25</div></div></div></div>
-    </div>
-
-    <div class="task-group">
-      <div class="tg-label orange">May — Community Push</div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Distribute school flyers through foundation partners</div><div class="task-desc">Deliver in person — sorted by classroom. Bring a BeachSports tee as a thank-you for the school office. Target 10+ schools across all 3 cities by May 16.</div><div class="task-meta"><span class="task-tag orange">May</span><span class="task-tag green">Macy</span><div class="task-due">Due: May 16</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send program spotlight email series</div><div class="task-desc">One email per program: Surf, Beach, Ocean, Volleyball, Skate. One per week. Each email = great photo, program description, age range, locations, register link.</div><div class="task-meta"><span class="task-tag orange">May</span><span class="task-tag green">Macy</span><div class="task-due">Due: May 1–31</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Brief Location Directors on daily content process</div><div class="task-desc">Each LD films one 10-second clip per day starting June 9. Sends to shared WhatsApp group or Google Drive folder by 2pm. Macy posts best one by 4pm. No editing needed.</div><div class="task-meta"><span class="task-tag orange">May</span><span class="task-tag dark">All LDs</span><span class="task-tag green">Macy coordinates</span><div class="task-due">Due: Jun 1</div></div></div></div>
-      <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Send cold leads / never-registered email</div><div class="task-desc">CampBrain: on list, no purchase history. Subject: "What South Bay parents are saying about this summer 🌟". Lead with 3 best testimonials + great photo. Trust first, CTA second.</div><div class="task-meta"><span class="task-tag orange">May</span><span class="task-tag green">Macy</span><div class="task-due">Due: May 12</div></div></div></div>
-    </div>
-  </section>
-
-  <!-- ══ TASKS ══ -->
-  <section id="p-tasks" class="page">
-    <div class="pg-hd">
-      <div class="pg-n">✅</div>
+    <div class="task reg">
+      <div><div class="task-date">Mon post-week</div><div class="task-day">Auto trigger</div></div>
+      <div class="task-bar o"></div>
       <div>
-        <div class="pg-eye">Task Board</div>
-        <div class="pg-ti">Tasks by <em>Owner</em></div>
-        <div class="pg-sb">Every task assigned to the right person. Macy owns marketing, Lisa owns email replies, Location Directors own daily content, Tommy approves everything.</div>
+        <div class="task-track reg-t">Registered · Auto · Active Campaign</div>
+        <div class="task-name">Email 5 — Post-Week Upsell</div>
+        <div class="task-detail">Fires Monday after their camp week ends. <strong>1-week families only.</strong> Option D recommended: add a week + sibling CTA + referral P.S. Excitement is still fresh — highest-conversion window.</div>
       </div>
     </div>
 
-    <div class="owner-tabs">
-      <button class="otab active" onclick="showOwner('macy',this)">Macy</button>
-      <button class="otab orange" onclick="showOwner('lisa',this,'orange')">Lisa</button>
-      <button class="otab gold" onclick="showOwner('lds',this,'gold')">Location Directors</button>
-      <button class="otab" onclick="showOwner('tommy',this)">Tommy</button>
-    </div>
-
-    <div id="ov-macy" class="task-view active">
-      <div class="insight green"><h4>Macy — Marketing Lead</h4><p>Owns 100% of marketing execution. Everything from email drafting to ad setup, content creation, school outreach, and weekly reporting. <strong>The weekly rhythm is built around Macy's schedule — draft Friday, send Monday, post daily.</strong></p></div>
-
-      <div class="task-group">
-        <div class="tg-label">Email — Macy Drafts, Tommy Approves</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Draft + send all 11 email segments (April–August)</div><div class="task-desc">Pull each segment from CampBrain, write copy, get Tommy approval, schedule send. Weekly Spot Check every Monday 8am all summer with zero exceptions.</div><div class="task-meta"><span class="task-tag green">Ongoing</span><span class="task-tag dark">Constant Contact / Active Campaign</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Set up Post-Week Upsell automation</div><div class="task-desc">Configure automated trigger in Active Campaign: if registration end date = last Monday → send "How was [Name]'s week?" email automatically. Set up once, runs all summer.</div><div class="task-meta"><span class="task-tag gold">April</span><span class="task-tag dark">Active Campaign</span></div></div></div>
-      </div>
-
-      <div class="task-group">
-        <div class="tg-label">Social Media — Daily During Camp</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Post daily Instagram Stories (Jun 9 – Aug 29)</div><div class="task-desc">Select best 10-second clip from LD WhatsApp by 4pm. Add location tag, relevant hashtags. Every Monday Story includes scarcity message for any programs under 80% fill.</div><div class="task-meta"><span class="task-tag orange">Daily</span><span class="task-tag dark">Instagram</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Post "South Bay Kid of the Week" every Friday</div><div class="task-desc">Coaches nominate by Thursday. Macy selects best photo/video, writes 3-line caption, posts noon Friday. Tag family + location. Archive all for fall marketing.</div><div class="task-meta"><span class="task-tag orange">Weekly Fri</span><span class="task-tag dark">Instagram</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">4–5 Instagram feed posts per week during summer</div><div class="task-desc">Content mix: 40% camper action, 25% staff/culture, 20% testimonials, 15% program info. Use Canva for testimonial graphics. Schedule in Meta Business Suite for consistency.</div><div class="task-meta"><span class="task-tag orange">Weekly</span><span class="task-tag dark">Meta Business Suite / Canva</span></div></div></div>
-      </div>
-
-      <div class="task-group">
-        <div class="tg-label">Paid Ads — Set Up Once, Monitor Weekly</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Set up Google Search Ads campaign</div><div class="task-desc">Google Ads account → New campaign → Search → $150–200/mo budget → exact match keywords → program-specific landing pages → conversion tracking tag on registration page.</div><div class="task-meta"><span class="task-tag red">This week</span><span class="task-tag dark">Google Ads</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Set up Instagram/Facebook awareness ad</div><div class="task-desc">Meta Ads Manager → Awareness objective → Age 28–45 → 10mi from Manhattan Beach → Exclude BeachSports followers → $100–150/mo → Single image creative (best camp photo).</div><div class="task-meta"><span class="task-tag red">This week</span><span class="task-tag dark">Meta Ads Manager</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Weekly ad performance check (Mondays)</div><div class="task-desc">Google Ads: clicks, cost per click, conversions. Meta: reach, CPM, link clicks. Report to Tommy monthly. Pause anything over $8 CPC with no conversions after 3 weeks.</div><div class="task-meta"><span class="task-tag orange">Weekly</span><span class="task-tag dark">Google Analytics</span></div></div></div>
-      </div>
-
-      <div class="task-group">
-        <div class="tg-label">Community + Schools</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Post on NextDoor 1–2x per week during summer</div><div class="task-desc">Neighbor tone, not brand tone. "Spots open at Hermosa Surf this week 🤙" + one real photo. Never use promotional language — post like a local, not an advertiser.</div><div class="task-meta"><span class="task-tag orange">Weekly</span><span class="task-tag dark">NextDoor Business</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Monitor South Bay Facebook groups + respond to camp questions</div><div class="task-desc">Join South Bay Moms, Manhattan Beach Parents, Redondo Beach Families personally. Answer every "summer camp recommendations?" thread. Share Kid of the Week posts.</div><div class="task-meta"><span class="task-tag orange">Ongoing</span><span class="task-tag dark">Facebook</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Relist Facebook Marketplace Services every 10 days</div><div class="task-desc">Takes 30 seconds. Keeps BeachSports at top of search results for parents searching local summer activities. Update photos with fresh camp content once summer starts.</div><div class="task-meta"><span class="task-tag orange">Every 10 days</span><span class="task-tag dark">Facebook Marketplace</span></div></div></div>
-      </div>
-    </div>
-
-    <div id="ov-lisa" class="task-view">
-      <div class="insight orange"><h4>Lisa Shea — Customer Service + Email Replies</h4><p>Lisa is the voice families hear when they respond to marketing emails. Her role is critical for converting inquiries into registrations. <strong>20+ years at BeachSports means Lisa's replies carry real credibility.</strong></p></div>
-      <div class="task-group">
-        <div class="tg-label orange">Lisa's Responsibilities</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Reply to all email inquiries within 24 hours</div><div class="task-desc">Every family who replies to a Spot Check or segment email needs a personal response from Lisa within 24 hours. A direct reply from a known name converts at dramatically higher rates than a form response.</div><div class="task-meta"><span class="task-tag orange">Ongoing</span><span class="task-tag dark">Constant Contact / Active Campaign</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Follow up with families who inquired but didn't register</div><div class="task-desc">Weekly, check CampBrain for families who clicked registration but didn't complete it. Lisa sends a personal follow-up email. No template — just a warm, direct note.</div><div class="task-meta"><span class="task-tag orange">Weekly</span><span class="task-tag dark">CampBrain</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Ask happy families for Google reviews at pickup</div><div class="task-desc">During camp weeks — when a parent mentions how much their kid loved camp — Lisa or any staff member hands them a card or texts them a direct Google review link. Target: 10+ new reviews by August.</div><div class="task-meta"><span class="task-tag orange">Jun–Aug</span><span class="task-tag dark">Google Business</span></div></div></div>
-      </div>
-    </div>
-
-    <div id="ov-lds" class="task-view">
-      <div class="insight gold"><h4>Location Directors — Daily Content Feed</h4><p>The LDs are the eyes and ears on the ground. Their job is simple: <strong>one great 10-second video clip per day, sent to Macy by 2pm.</strong> No editing, no captions needed — just authentic moments from camp. This feeds the entire Instagram Stories strategy.</p></div>
-      <div class="task-group">
-        <div class="tg-label gold">All Location Directors</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Film + send one 10-second clip per day (Jun 9 – Aug 29)</div><div class="task-desc">A kid catching a wave, a skate trick, a volleyball spike, kids laughing at lunch — anything authentic and joyful. Send to Macy's shared WhatsApp thread or Google Drive folder by 2pm. No editing, no filters needed.</div><div class="task-meta"><span class="task-tag orange">Daily</span><span class="task-tag dark">All LDs</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Nominate Kid of the Week by Thursday each week</div><div class="task-desc">Any LD can nominate a camper who had a breakthrough moment that week. Send name + photo/video to Macy by Thursday noon. Parent consent must be confirmed at registration.</div><div class="task-meta"><span class="task-tag orange">Weekly Thu</span><span class="task-tag dark">All LDs</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Report Monday enrollment numbers to Macy</div><div class="task-desc">Every Monday morning, each LD confirms how many spots are filled vs open for their location/program that week. This is the data that drives the Spot Check email and Story urgency messaging.</div><div class="task-meta"><span class="task-tag orange">Every Mon</span><span class="task-tag dark">All LDs</span></div></div></div>
-      </div>
-    </div>
-
-    <div id="ov-tommy" class="task-view">
-      <div class="insight green"><h4>Tommy — Approval + Direction</h4><p>Tommy approves all marketing before it goes out. The process needs to be frictionless — <strong>Macy submits Friday, Tommy approves by Saturday, sends go Monday.</strong> Tommy's main job is keeping the strategy on brand and the messaging authentic to BeachSports' voice.</p></div>
-      <div class="task-group">
-        <div class="tg-label">Tommy's Approvals</div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Approve weekly Spot Check email (every Friday)</div><div class="task-desc">Macy drafts and submits Friday by noon. Tommy reviews and approves by Saturday. Sends Monday 8am. Maximum turnaround: 24 hours to keep the engine running.</div><div class="task-meta"><span class="task-tag green">Weekly</span><span class="task-tag dark">Email</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Approve all paid ad creative before launch</div><div class="task-desc">Google Ads copy + Meta ad image need Tommy sign-off before going live. One-time approval for the initial setup, then only if creative changes.</div><div class="task-meta"><span class="task-tag red">Apr 5 deadline</span><span class="task-tag dark">Google + Meta</span></div></div></div>
-        <div class="task"><input type="checkbox" class="task-check"><div class="task-body"><div class="task-title">Monthly marketing debrief with Macy (first Monday of each month)</div><div class="task-desc">15-minute check-in: enrollment status, email performance, ad spend, what's working and what needs adjusting. Keeps Tommy informed without creating daily bottlenecks for Macy.</div><div class="task-meta"><span class="task-tag green">Monthly</span></div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ WEEKLY RHYTHM ══ -->
-  <section id="p-rhythm" class="page">
-    <div class="pg-hd">
-      <div class="pg-n orange">🔁</div>
+    <div class="task">
+      <div><div class="task-date">Jun 16</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
       <div>
-        <div class="pg-eye orange">Camp Season</div>
-        <div class="pg-ti">Weekly <em class="orange">Rhythm</em></div>
-        <div class="pg-sb">The operating cadence from June 9 through August 29. Every week follows the same structure — once the habit is built, the engine runs itself.</div>
+        <div class="task-track mkt">Marketing · Seg 05</div>
+        <div class="task-name">Single-Week Bookers → 10% Discount Reminder</div>
+        <div class="task-detail">CampBrain: only 1 week booked for 2026. Two weeks into camp — families have seen their kid love it. Peak receptivity. Short, one paragraph, one link.</div>
       </div>
     </div>
 
-    <div class="insight orange">
-      <h4>The Weekly North Star</h4>
-      <p>Every week has one question that drives all decisions: <strong>"Which programs have open spots and what are we doing about it in the next 72 hours?"</strong> The Monday check-in answers that question. Everything else in the week flows from the answer.</p>
-    </div>
-
-    <div class="week-grid">
-      <div class="day-card">
-        <div class="day-name">Monday</div>
-        <div class="day-tag">The Engine Day — Most Important</div>
-        <ul class="day-tasks">
-          <li><strong>8am:</strong> Send weekly Spot Check email <span class="day-time">20 min</span></li>
-          <li>Check enrollment numbers from all LDs <span class="day-time">10 min</span></li>
-          <li>Post scarcity Story for any program under 80% <span class="day-time">5 min</span></li>
-          <li>Check Google Ads + Meta ad performance <span class="day-time">10 min</span></li>
-          <li>Follow up with any open inquiries <span class="day-time">10 min</span></li>
-          <li>Post on NextDoor for any open spots <span class="day-time">5 min</span></li>
-        </ul>
-      </div>
-
-      <div class="day-card orange">
-        <div class="day-name">Tuesday – Thursday</div>
-        <div class="day-tag">Content + Community</div>
-        <ul class="day-tasks">
-          <li>Receive LD clips → post best one as Story by 4pm <span class="day-time">Daily</span></li>
-          <li>Monitor Facebook groups, answer camp questions <span class="day-time">10 min</span></li>
-          <li>If any program still under 70% Wed: send targeted urgency blast to past attendees of that program <span class="day-time">30 min</span></li>
-          <li>Capture content at camp if on-site <span class="day-time">Ongoing</span></li>
-          <li>Respond to Instagram DMs + comments <span class="day-time">10 min</span></li>
-        </ul>
-      </div>
-
-      <div class="day-card gold">
-        <div class="day-name">Friday</div>
-        <div class="day-tag">Kid of the Week + Next Week Prep</div>
-        <ul class="day-tasks">
-          <li><strong>Noon:</strong> Post Kid of the Week on Instagram <span class="day-time">15 min</span></li>
-          <li>Draft next Monday's Spot Check email <span class="day-time">20 min</span></li>
-          <li>Submit email draft to Tommy for approval <span class="day-time">5 min</span></li>
-          <li>Relist Facebook Marketplace (every other Friday) <span class="day-time">5 min</span></li>
-          <li>Plan feed posts for following week <span class="day-time">15 min</span></li>
-        </ul>
-      </div>
-
-      <div class="day-card dark">
-        <div class="day-name">Weekend</div>
-        <div class="day-tag">Minimal — Async Only</div>
-        <ul class="day-tasks">
-          <li>Tommy reviews + approves Monday email draft <span class="day-time">Sat</span></li>
-          <li>Monitor Instagram for any comments/DMs that need response <span class="day-time">15 min</span></li>
-          <li>No active posting required — let the content breathe <span class="day-time">—</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="insight green">
-      <h4>Total Weekly Time Investment — Macy</h4>
-      <p>Monday: ~60 min. Tuesday–Thursday: ~25 min/day. Friday: ~60 min. Weekend: minimal async. <strong>Total: ~3.5–4 hours per week</strong> to run the entire marketing engine during camp season. This is executable alongside everything else Macy is doing on the ground.</p>
-    </div>
-  </section>
-
-  <!-- ══ TOOLS ══ -->
-  <section id="p-tools" class="page">
-    <div class="pg-hd">
-      <div class="pg-n gold">🛠️</div>
+    <div class="task urgent">
+      <div><div class="task-date">Wed (if needed)</div><div class="task-day">Conditional</div></div>
+      <div class="task-bar r"></div>
       <div>
-        <div class="pg-eye gold">Marketing Stack</div>
-        <div class="pg-ti">Tools + <em class="gold">Setup Status</em></div>
-        <div class="pg-sb">What's ready, what needs activation, and what needs to be set up from scratch. Every tool has a clear action item.</div>
+        <div class="task-track cond">Conditional · Seg 07 · Check Tue</div>
+        <div class="task-name">Urgency Blast — Program Under 70%</div>
+        <div class="task-detail">Check enrollment Tuesday. If any program under 70% for the following week → CampBrain: past attendees of that exact program + location → send Wednesday. 15 minutes to write. No design needed. If targeted list is too small, escalate to broader list.</div>
       </div>
     </div>
+  </div>
 
-    <div class="tools-grid">
-      <div class="tool-card">
-        <div class="tool-ico">📧</div>
-        <div class="tool-name">Constant Contact</div>
-        <div class="tool-status ready">✓ Ready to Use</div>
-        <div class="tool-body">Already set up. Use for the weekly Spot Check email and all broadcast sends to the full list. <strong>Make sure the BeachSports list is segmented by program history before April sends.</strong></div>
-        <div class="tool-action">→ Draft lapsed families email today</div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-ico">⚡</div>
-        <div class="tool-name">Active Campaign</div>
-        <div class="tool-status setup">↻ Needs Setup</div>
-        <div class="tool-body">Use for automated triggers — specifically the Post-Week Upsell automation. <strong>Set up one trigger: registration end date → send upsell email 48 hours later.</strong> Set up once, runs all summer.</div>
-        <div class="tool-action">→ Build upsell automation in April</div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-ico">🎨</div>
-        <div class="tool-name">Canva</div>
-        <div class="tool-status ready">✓ Ready to Use</div>
-        <div class="tool-body">Use for school flyer design, Instagram testimonial graphics, Story templates, and the Kid of the Week frame overlay. <strong>Create a BeachSports brand kit in Canva with the exact green/orange/gold colors.</strong></div>
-        <div class="tool-action">→ Design school flyer this week</div>
-      </div>
-
-      <div class="tool-card orange">
-        <div class="tool-ico">📱</div>
-        <div class="tool-name">Meta Business Suite</div>
-        <div class="tool-status ready">✓ Ready — Ads Need Launch</div>
-        <div class="tool-body">Business Suite is set up. <strong>Meta Ads Manager needs one new campaign:</strong> Awareness → Parents 28–45 → 10mi from MB → $100–150/mo. Also use Business Suite to schedule Instagram feed posts in advance.</div>
-        <div class="tool-action">→ Launch awareness ad by Apr 7</div>
-      </div>
-
-      <div class="tool-card orange">
-        <div class="tool-ico">🔍</div>
-        <div class="tool-name">Google Ads</div>
-        <div class="tool-status new">✦ New — Set Up Required</div>
-        <div class="tool-body">No active campaigns currently. <strong>Set up a new Search campaign:</strong> local keywords, $150–200/mo, program-specific landing pages, conversion tracking. Install Google tag on the registration confirmation page.</div>
-        <div class="tool-action">→ Set up campaign by Apr 7</div>
-      </div>
-
-      <div class="tool-card orange">
-        <div class="tool-ico">📊</div>
-        <div class="tool-name">Google Analytics</div>
-        <div class="tool-status activate">! Needs Reactivation</div>
-        <div class="tool-body">Has access but hasn't been used in a year. <strong>Log in, confirm GA4 is tracking beachsports.com, set up a Conversion event for the registration page.</strong> This is required before Google Ads launches to track ROI properly.</div>
-        <div class="tool-action">→ Reactivate this week — urgent</div>
-      </div>
-
-      <div class="tool-card gold">
-        <div class="tool-ico">🏘️</div>
-        <div class="tool-name">NextDoor Business</div>
-        <div class="tool-status new">✦ New — 15 Min Setup</div>
-        <div class="tool-body">Free business profile. Go to nextdoor.com/business → 112 Arena St, El Segundo → Recreation/Camps → verify. <strong>Post 1–2x per week during summer as a neighbor, not a brand.</strong> Encourage happy parents to post their own recommendations.</div>
-        <div class="tool-action">→ Set up today — takes 15 min</div>
-      </div>
-
-      <div class="tool-card gold">
-        <div class="tool-ico">🛍️</div>
-        <div class="tool-name">Facebook Marketplace</div>
-        <div class="tool-status new">✦ New — 10 Min Setup</div>
-        <div class="tool-body">Free Services listing. From BeachSports FB page → Marketplace → Services → Recreation. Add 3–5 camp photos, description, price, registration link. <strong>Relist every 10 days to stay at top of search.</strong></div>
-        <div class="tool-action">→ Post listing today</div>
-      </div>
-
-      <div class="tool-card dark">
-        <div class="tool-ico">📋</div>
-        <div class="tool-name">CampBrain</div>
-        <div class="tool-status ready">✓ Data Source — Use for Segments</div>
-        <div class="tool-body">The backbone of the email strategy. <strong>Key filters to build and save now:</strong> DOB ranges for age unlocks, program history for lifecycle emails, attendance year for lapsed families, child count for multi-family sends.</div>
-        <div class="tool-action">→ Build all 11 saved segments in April</div>
-      </div>
+  <!-- JULY -->
+  <div class="month">
+    <div class="month-hd">
+      <div><div class="month-name">July</div><div class="month-sub">July 4th single day · Expo leads final touch · Google reviews · Urgency (conditional)</div></div>
+      <div class="month-line"></div>
+      <div class="month-count o">4–5 Sends</div>
     </div>
-  </section>
 
-  <!-- ══ CAMP WEEKS ══ -->
-  <section id="p-campweeks" class="page">
-    <div class="pg-hd">
-      <div class="pg-n orange">🌊</div>
+    <div class="task">
+      <div><div class="task-date">Late June</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar gl"></div>
       <div>
-        <div class="pg-eye orange">Jun 9 – Aug 29</div>
-        <div class="pg-ti">Camp Week <em class="orange">Playbook</em></div>
-        <div class="pg-sb">12 weeks of camp. Each week has a clear marketing action. The goal for every single week is 100% fill rate by the Monday it starts.</div>
+        <div class="task-track mkt">Marketing · Seg 08</div>
+        <div class="task-name">July 4th Week — Single Day Camp Push</div>
+        <div class="task-detail">Send before the 4th. Promote single-day camp option for the holiday week. Low commitment = easy yes. <strong>To: lapsed + expo leads who haven't registered yet.</strong> Holiday-fun subject, not salesy.</div>
       </div>
     </div>
 
-    <div class="insight orange">
-      <h4>The Gap Fill Rule</h4>
-      <p>If any program is below 80% capacity with <strong>2 weeks to go</strong> — a targeted urgency email goes to past attendees of that program. If below 70% with <strong>1 week to go</strong> — a scarcity Story goes up the same day AND Macy posts on NextDoor and the Facebook groups. <strong>No spot sits unaddressed for more than 72 hours.</strong></p>
-    </div>
-
-    <div class="camp-weeks">
-      <div class="week-row"><div class="week-num">Week 1</div><div class="week-dates">Jun 9 – Jun 13</div><div class="week-bar-wrap"><div class="week-bar" style="width:85%"></div></div><div class="week-tasks"><strong>Launch week.</strong> First Spot Check email. First Kid of the Week Friday. Intro Stories daily. Collect first testimonials.</div></div>
-      <div class="week-row"><div class="week-num">Week 2</div><div class="week-dates">Jun 16 – Jun 20</div><div class="week-bar-wrap"><div class="week-bar" style="width:80%"></div></div><div class="week-tasks">Spot Check Mon. Post-week upsell to week 1 families Sunday. Stories + KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 3</div><div class="week-dates">Jun 23 – Jun 27</div><div class="week-bar-wrap"><div class="week-bar" style="width:75%"></div></div><div class="week-tasks">Spot Check Mon. Check fill rates — trigger urgency blasts for any program under 70%. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 4</div><div class="week-dates">Jun 30 – Jul 4</div><div class="week-bar-wrap"><div class="week-bar" style="width:70%"></div></div><div class="week-tasks"><strong>4th of July week</strong> — may have lower enrollment. Prep early. Post-week upsells to all June families this week.</div></div>
-      <div class="week-row"><div class="week-num">Week 5</div><div class="week-dates">Jul 7 – Jul 11</div><div class="week-bar-wrap"><div class="week-bar" style="width:78%"></div></div><div class="week-tasks">Spot Check Mon. Identify slowest upcoming week for Bring a Friend Week targeting. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 6</div><div class="week-dates">Jul 14 – Jul 18</div><div class="week-bar-wrap"><div class="week-bar" style="width:65%"></div></div><div class="week-tasks"><strong>Bring a Friend Week.</strong> Send referral email to all registered families 2 weeks prior. Maximum urgency push this week.</div></div>
-      <div class="week-row"><div class="week-num">Week 7</div><div class="week-dates">Jul 21 – Jul 25</div><div class="week-bar-wrap"><div class="week-bar" style="width:72%"></div></div><div class="week-tasks">Spot Check Mon. Review Google Ads performance — scale to $200/mo if converting well. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 8</div><div class="week-dates">Jul 28 – Aug 1</div><div class="week-bar-wrap"><div class="week-bar" style="width:80%"></div></div><div class="week-tasks">Spot Check Mon. Start collecting Google reviews from happy families at pickup this week. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 9</div><div class="week-dates">Aug 4 – Aug 8</div><div class="week-bar-wrap"><div class="week-bar" style="width:82%"></div></div><div class="week-tasks">Spot Check Mon. Pause Google Ads if summer is winding down. Ramp up review asks. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 10</div><div class="week-dates">Aug 11 – Aug 15</div><div class="week-bar-wrap"><div class="week-bar" style="width:78%"></div></div><div class="week-tasks">Spot Check Mon. Final urgency blasts for any remaining open weeks. Push Google reviews hard. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 11</div><div class="week-dates">Aug 18 – Aug 22</div><div class="week-bar-wrap"><div class="week-bar" style="width:85%"></div></div><div class="week-tasks">Second to last week. Begin drafting 2027 waitlist email. Thank-you campaign content prep. KotW Fri.</div></div>
-      <div class="week-row"><div class="week-num">Week 12</div><div class="week-dates">Aug 25 – Aug 29</div><div class="week-bar-wrap"><div class="week-bar" style="width:90%"></div></div><div class="week-tasks"><strong>Final week.</strong> Thank-you + 2027 waitlist email sends Friday Aug 29. "Best summer ever" closing Instagram post. Google review final push.</div></div>
-    </div>
-  </section>
-
-  <!-- ══ MONDAY PITCH ══ -->
-  <section id="p-pitch" class="page">
-    <div class="pg-hd">
-      <div class="pg-n">🎯</div>
+    <div class="task">
+      <div><div class="task-date">Jul 11</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
       <div>
-        <div class="pg-eye">Monday March 23 · Solo Presentation</div>
-        <div class="pg-ti">Macy's <em>Pitch Flow</em></div>
-        <div class="pg-sb">Walk the big bosses through this plan in 20–25 minutes. Lead with the problem, build to the strategy, close with execution confidence. Every section has a talking point.</div>
+        <div class="task-track mkt">Marketing · Seg 06 · Touch 3 (Final)</div>
+        <div class="task-name">Expo Leads — "Summer is going fast — a few spots still open 🌊"</div>
+        <div class="task-detail">Final touch to expo leads. Honest urgency. Macy fills in specific open programs + spots before sending. <strong>After this send: stop emailing this list entirely.</strong></div>
       </div>
     </div>
 
-    <div class="insight green">
-      <h4>Macy's Positioning Walking In</h4>
-      <p>You're not presenting ideas — <strong>you're presenting a system.</strong> The difference is confidence. Every section has a "why," a "how," and an owner. When Tommy and Libby ask "who handles that?" the answer is always clear. That's what makes this pitch land.</p>
-    </div>
-
-    <div class="pitch-steps">
-      <div class="pitch-step">
-        <div class="pitch-step-n">1</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Open with the goal — one sentence</div>
-          <div class="pitch-step-desc"><em>"Our goal this summer is simple: sell out every program, every week, across all three locations. This plan shows exactly how we get there."</em> Don't over-explain. Let the confidence land before the detail.</div>
-          <div class="pitch-time">~1 minute</div>
-        </div>
-      </div>
-      <div class="pitch-step">
-        <div class="pitch-step-n">2</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">The situation — where we are right now</div>
-          <div class="pitch-step-desc">Registration is open. Early bird closed. We have a warm audience in our email list and Instagram, a strong foundation of alumni families, and community relationships most businesses would pay for. <strong>We're not starting from zero — we're activating what we already have.</strong></div>
-          <div class="pitch-time">~2 minutes</div>
-        </div>
-      </div>
-      <div class="pitch-step orange">
-        <div class="pitch-step-n">3</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Part 1 — Segmented email (lead with the age unlock example)</div>
-          <div class="pitch-step-desc">Start with the example Tommy will immediately connect with: <em>"A family whose child just turned 7 has been doing Beach camp for 3 years. They don't know their kid is now eligible for Surf, Ocean, Volleyball, and Skate. We send them one email this week — and 25–40% of those families register for a new program."</em> Then walk through the 11 segments and the Spot Check cadence.</div>
-          <div class="pitch-time">~6 minutes</div>
-        </div>
-      </div>
-      <div class="pitch-step orange">
-        <div class="pitch-step-n">4</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Part 2 — Schools (lead with "we don't need cold calls")</div>
-          <div class="pitch-step-desc"><em>"We already donate to MBEF, RBEF, HBEF, and eight other school foundations. That relationship gets us into 15+ schools without a single cold outreach to a principal. We design the flyer in Canva, print 1,000 at Costco for $60, deliver in person in May."</em> Simple, credible, actionable.</div>
-          <div class="pitch-time">~3 minutes</div>
-        </div>
-      </div>
-      <div class="pitch-step orange">
-        <div class="pitch-step-n">5</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Part 3 — Communities (lead with the reach number)</div>
-          <div class="pitch-step-desc"><em>"South Bay parent Facebook groups have a combined reach of 15,000–30,000 local parents. We can't advertise in them — but our staff and happy parents can post as themselves. A NextDoor Business profile is free and takes 15 minutes to set up. Facebook Marketplace Services listing is free and almost no camps are using it."</em></div>
-          <div class="pitch-time">~3 minutes</div>
-        </div>
-      </div>
-      <div class="pitch-step">
-        <div class="pitch-step-n">6</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Part 4 — Paid Ads (lead with the budget)</div>
-          <div class="pitch-step-desc"><em>"Two ads. $250–350 per month total. Google Search captures parents already searching for camps — highest purchase intent possible. Instagram Feed reaches new South Bay families who don't follow us yet. If Google Search generates one additional registration per week, it pays for itself entirely."</em></div>
-          <div class="pitch-time">~3 minutes</div>
-        </div>
-      </div>
-      <div class="pitch-step">
-        <div class="pitch-step-n">7</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Close with the execution system — show the weekly rhythm</div>
-          <div class="pitch-step-desc"><em>"Here's what this looks like week to week. Monday I send the Spot Check email and check enrollment. Tuesday through Thursday I post daily Stories from the LD content feed. Friday I post Kid of the Week and draft next week's email for Tommy's approval. That's 3.5 hours a week to run the whole engine."</em> This is where they go from impressed to confident.</div>
-          <div class="pitch-time">~4 minutes</div>
-        </div>
-      </div>
-      <div class="pitch-step orange">
-        <div class="pitch-step-n">8</div>
-        <div class="pitch-step-body">
-          <div class="pitch-step-title">Close with two asks — budget approval + approval process</div>
-          <div class="pitch-step-desc">End with two specific asks: <strong>(1)</strong> <em>"I need approval to spend $350–450/month on Google Ads, Meta Ads, and print."</em> <strong>(2)</strong> <em>"I'll submit email drafts and ad creative to Tommy by Friday each week — can we agree on 24-hour turnaround for approvals so Monday sends stay on schedule?"</em> Specific asks get specific answers.</div>
-          <div class="pitch-time">~2 minutes</div>
-        </div>
+    <div class="task">
+      <div><div class="task-date">Jul 18</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing</div>
+        <div class="task-name">Google Review Ask — First Request</div>
+        <div class="task-detail">To all registered families. Peak satisfaction moment. "If [Name] is loving camp, 60 seconds on Google means the world." Include direct review link. Keep it short and warm.</div>
       </div>
     </div>
 
-    <div class="divider"></div>
-    <div class="insight green">
-      <h4>If They Ask "What's the ROI?"</h4>
-      <p>Answer with the referral math: <em>"200 registered families, 10% referral rate, 20 new registrations at $350 average = $7,000 from one email and a box of tees. Google Ads at $200/month, one registration per week = $350 per week revenue against $50 weekly ad cost. The organic channels — email, NextDoor, schools — are effectively free."</em></p>
+    <div class="task urgent">
+      <div><div class="task-date">Wed (if needed)</div><div class="task-day">Conditional</div></div>
+      <div class="task-bar r"></div>
+      <div>
+        <div class="task-track cond">Conditional · Seg 07 · Check Tue</div>
+        <div class="task-name">Urgency Blast — Program Under 70%</div>
+        <div class="task-detail">Same as June trigger. Check Tuesday, send Wednesday if needed. Past attendees only. 15 minutes. Escalate to broader list if targeted group is too small.</div>
+      </div>
     </div>
-    <div class="insight gold">
-      <h4>If They Ask "What If We Don't Have Time?"</h4>
-      <p>Answer with the rhythm: <em>"The system is designed for 3.5 hours per week during camp season. The heaviest lift is April setup — after that it's a weekly cadence. The Location Directors handle daily content. Lisa handles replies. I handle everything else. It's already accounted for."</em></p>
+  </div>
+
+  <!-- AUGUST -->
+  <div class="month">
+    <div class="month-hd">
+      <div><div class="month-name">August</div><div class="month-sub">Fill remaining spots · 10% discount final push · Close strong · 2027 setup</div></div>
+      <div class="month-line"></div>
+      <div class="month-count d">4 Sends</div>
     </div>
-  </section>
+
+    <div class="task">
+      <div><div class="task-date">Aug 1</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Seg 05</div>
+        <div class="task-name">Final Multi-Week Discount Push</div>
+        <div class="task-detail">Last call for 10% discount. "Two weeks left to add a week and save." To single-week families only who haven't booked more.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Aug 8–15</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing</div>
+        <div class="task-name">Final Urgency for Open Spots</div>
+        <div class="task-detail">To lapsed + expo leads who still haven't registered. Last real chance to fill gaps. Name every open program and spot specifically. Maximum urgency.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Aug 29</div><div class="task-day">Fri AM</div></div>
+      <div class="task-bar g"></div>
+      <div>
+        <div class="task-track mkt">Marketing</div>
+        <div class="task-name">Google Review (2nd ask) + 2027 Interest List</div>
+        <div class="task-detail">To all 2026 registered families. Second Google review ask + "want to be first for 2027?" Google Form link. Warm, brief, celebratory tone.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div><div class="task-date">Aug 29</div><div class="task-day">Fri</div></div>
+      <div class="task-bar d" style="background:#999;"></div>
+      <div>
+        <div class="task-track mkt">Marketing · Season Close</div>
+        <div class="task-name">Season Close — "What a summer. See you in 2027 🌊"</div>
+        <div class="task-detail">To all 2026 families. Thank them, celebrate the season, 1 great photo. <strong>Two asks only:</strong> (1) 2027 interest list. (2) Google review. Families at peak happiness — strike now. Warm, grateful, brief.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TASK CHECKLIST ══════════ -->
+<section id="p-tasks" class="page">
+  <div class="pg-hd">
+    <div class="pg-eye o">View 2</div>
+    <div class="pg-ti">Macy's <em class="o">Task Checklist</em></div>
+    <div class="pg-sb">Everything Macy needs to set up, build, and send — organized by phase. Check off as you go. Tommy approves all email sends and ad creative before publishing.</div>
+  </div>
+
+  <div class="note orange"><h4>Approval Rule</h4><p>Every email send, paid ad creative, and any content featuring staff or campers goes to <strong>Tommy for approval before publishing.</strong> Turnaround needed: <strong>24 hours max.</strong> Macy submits Thursday for Friday sends.</p></div>
+
+  <!-- PRE-SEASON -->
+  <div class="phase">
+    <div class="phase-hd g">
+      <div class="phase-n">01</div>
+      <div><div class="phase-label">Phase 1 · Now → Apr 30 · Do First</div><div class="phase-title">Pre-Season Setup + First Sends</div></div>
+      <div class="br" style="margin-left:auto;"><span class="badge red">This Week</span></div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Set up Active Campaign automation:</strong> Email 1 (on reg), Email 2 (21 days pre-camp), Email 3 (5 days pre-camp), Email 4 (2 wks pre-camp), Email 5 (Mon post-week). Also set up the late sign-up "quick prep" email for families registering within 5 days of camp.</div>
+        <div class="task-due red">This week</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Set up Google Ads:</strong> 5 ad groups (one per program) in Google Ads Manager. $150–200/mo budget Apr–Jul. Volleyball gets $40–50 extra. Program-specific landing pages per ad group. Conversion tracking on.</div>
+        <div class="task-due red">This week</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Set up Instagram + Facebook ads:</strong> 5 creatives (one per program), parents 28–45, 10mi from MB. Volleyball own ad set with $40–50 dedicated budget. Exclude current followers. $100–150/mo total.</div>
+        <div class="task-due red">This week</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Pull and export CampBrain lists:</strong> Lapsed 2025 (sorted by program), Lapsed 2023–2024, DOB 2019 + Beach history, DOB 2021 + Beach history, 1-week history families. Import each as a separate list in Constant Contact.</div>
+        <div class="task-due red">This week</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 03 — Lapsed 2025:</strong> "We saved a spot for [Name] 🌊" → Friday Apr 4. Warm tone, reference program, one CTA. Tommy approval Thu Apr 3.</div>
+        <div class="task-due red">Apr 4</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 01 — Beach → Full Programs:</strong> "[Name] just unlocked something big 🏄" → Friday Apr 4. One photo per program, direct links.</div>
+        <div class="task-due red">Apr 4</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 06 Touch 1 — Expo leads:</strong> Social proof intro, 2 testimonials + photo. No pitch. Import event-collected emails to Constant Contact first.</div>
+        <div class="task-due green">Mid Apr</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 02 — Skate Age Unlock + Saturday Sessions:</strong> "Old enough to shred 🛹" → Apr 18. Two CTAs: Saturday session + full week.</div>
+        <div class="task-due green">Apr 18</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 04 — Lapsed 2023–2024:</strong> "A lot has changed 👇" → Apr 25. What's new + best testimonial. 1 email only.</div>
+        <div class="task-due green">Apr 25</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 05 — Single-Week 10% Discount:</strong> "Book 2+ weeks, save 10% — returning families only" → Apr 25.</div>
+        <div class="task-due green">Apr 25</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>School outreach — Tier 1:</strong> Identify staff/parent contacts at each school. Send pre-written email template + digital flyer to forward to their principal or office manager.</div>
+        <div class="task-due green">Apr</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Set up NextDoor Business Profile:</strong> nextdoor.com/business → 112 Arena St, El Segundo → Recreation/Camps → verify by phone. 15 minutes.</div>
+        <div class="task-due green">Apr</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Set up Facebook Marketplace listing:</strong> Services → Recreation → 3–5 photos + description + price + registration link. Relist every 10 days.</div>
+        <div class="task-due green">Apr</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAY -->
+  <div class="phase">
+    <div class="phase-hd gl">
+      <div class="phase-n">02</div>
+      <div><div class="phase-label">Phase 2 · May · Community Push</div><div class="phase-title">Expo Touch 2 · Schools · Foundation Partners</div></div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 06 Touch 2 — Expo leads:</strong> "This is what BeachSports is all about 🏄" → May 30. All 5 programs + ages + locations + best action photo + registration link.</div>
+        <div class="task-due gold">May 30</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>School outreach — Tier 2 (Foundation partners):</strong> Email MBEF, RBEF, HBEF, Peninsula Ed Foundation, ES Ed Foundation, AMS Foundation. Ask for May bag stuffing or parent newsletter inclusion.</div>
+        <div class="task-due gold">May 9</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Print + deliver school flyers:</strong> Design double-sided flyer in Canva. Print 500–1,000 at Costco Business ($50–80). Pre-sort by classroom. Deliver in person with a BeachSports tee for each office by May 9.</div>
+        <div class="task-due gold">May 9</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>School outreach — Tier 3 (Office managers):</strong> Email office managers at any remaining schools. Offer to drop off flyers pre-sorted. Show up in person if needed.</div>
+        <div class="task-due gold">May</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Join + monitor Facebook community groups:</strong> South Bay Moms, Manhattan Beach Parents, Redondo Beach Families, Hermosa Beach Community, El Segundo Parents. Answer every "summer camp recommendations?" thread immediately.</div>
+        <div class="task-due gold">May</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Collect emails at community events:</strong> iPad sign-up at MB + Hermosa Farmers Markets, school fairs, beach events. Add collected emails to Constant Contact expo list immediately after each event.</div>
+        <div class="task-due gold">Ongoing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMP SEASON -->
+  <div class="phase">
+    <div class="phase-hd o">
+      <div class="phase-n">03</div>
+      <div><div class="phase-label">Phase 3 · Jun 9 – Aug 29 · Camp Season</div><div class="phase-title">Active Season Sends + Weekly Checks</div></div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send pre-camp hype email — Jun 6:</strong> To all registered families + last-chance CTA for open spots. What to expect, what to bring.</div>
+        <div class="task-due green">Jun 6</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 05 — 10% discount reminder — Jun 16:</strong> To 1-week families only. Short, one paragraph, one link.</div>
+        <div class="task-due green">Jun 16</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Every Tuesday during camp:</strong> Check enrollment numbers for each program across all 3 locations for the following week. If any program is under 70% → send urgency blast Wednesday to past attendees of that specific program + location.</div>
+        <div class="task-due grey">Every Tue</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 06 Touch 3 (Final) — Jul 11:</strong> Final expo lead email. Honest urgency. Fill in specific open spots before sending. After this: remove expo leads from all future sends.</div>
+        <div class="task-due green">Jul 11</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send Seg 08 — July 4th single day push — late June:</strong> "No plans July [day]? We've got a day at the beach 🎆" → lapsed + expo leads not yet registered.</div>
+        <div class="task-due green">Late Jun</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Google review ask #1 — Jul 18:</strong> To all registered families. Peak satisfaction. Short, warm, direct review link.</div>
+        <div class="task-due green">Jul 18</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send final multi-week discount push — Aug 1:</strong> Last call for 10% discount. "Two weeks left to add a week and save." To single-week families.</div>
+        <div class="task-due grey">Aug 1</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send final urgency for open spots — Aug 8–15:</strong> To lapsed + expo leads still not registered. Name every open spot specifically.</div>
+        <div class="task-due grey">Aug 8–15</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSE OUT -->
+  <div class="phase">
+    <div class="phase-hd d">
+      <div class="phase-n">04</div>
+      <div><div class="phase-label">Phase 4 · Aug 29 · Close Out</div><div class="phase-title">Reviews · 2027 Interest List · Season Close</div></div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Google review ask #2 + 2027 interest list — Aug 29:</strong> To all 2026 families. Second review ask + "Want to be first for 2027?" Google Form link.</div>
+        <div class="task-due grey">Aug 29</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Send season close email — Aug 29:</strong> "What a summer. See you in 2027 🌊" → all 2026 families. Warm, brief, 1 great photo. Two asks only: 2027 interest list + Google review.</div>
+        <div class="task-due grey">Aug 29</div>
+      </div>
+      <div class="task-item" onclick="tick(this)">
+        <div class="task-cb"></div>
+        <div class="task-text"><strong>Debrief with Tommy:</strong> Email performance recap, enrollment fills, Google Ads ROI, what to keep/change for 2027. Document while it's fresh.</div>
+        <div class="task-due grey">Sep</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WEEKLY RHYTHM ══════════ -->
+<section id="p-rhythm" class="page">
+  <div class="pg-hd">
+    <div class="pg-eye g">View 3</div>
+    <div class="pg-ti">Weekly <em>Rhythm</em></div>
+    <div class="pg-sb">What Macy does every week during camp season (Jun 9 – Aug 29). Same cadence every week — gets easier as summer goes.</div>
+  </div>
+
+  <div class="note green"><h4>The Engine</h4><p>Once the automated emails are set up and ads are running, the weekly rhythm is what keeps everything moving. <strong>Most weeks this is 3–4 hours of focused work.</strong> The rest runs itself.</p></div>
+
+  <table class="rhythm">
+    <thead>
+      <tr><th>Day</th><th>Task</th><th>Time needed</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Monday</strong></td>
+        <td>Check enrollment numbers for every program across all 3 locations. Flag anything under 80% — those go in Friday's email. Flag anything under 70% — prep urgency blast for Wednesday.</td>
+        <td>20 min</td>
+      </tr>
+      <tr>
+        <td><strong>Tuesday</strong></td>
+        <td>If any program is under 70% for next week → write urgency blast email (15 min, no design) → send to Tommy for approval.</td>
+        <td>15–30 min (if needed)</td>
+      </tr>
+      <tr>
+        <td><strong>Wednesday</strong></td>
+        <td>Send urgency blast if triggered + approved. Otherwise: capture content from LDs (photos, clips) for Friday email and social.</td>
+        <td>15–30 min</td>
+      </tr>
+      <tr>
+        <td><strong>Thursday</strong></td>
+        <td>Draft Friday email — plain text, under 150 words, 1 photo, named open spots. Submit to Tommy for approval by end of day. Also post Kid of the Week on Instagram.</td>
+        <td>30–45 min</td>
+      </tr>
+      <tr>
+        <td><strong>Friday 8am</strong></td>
+        <td>Tommy approves → Macy sends email. Post Instagram daily story recap from that week. Relist Facebook Marketplace every 10 days (30 seconds).</td>
+        <td>15 min</td>
+      </tr>
+      <tr>
+        <td><strong>All week</strong></td>
+        <td>Monitor Facebook community groups (South Bay Moms, MB Parents, etc.) — respond immediately to any "summer camp recommendations?" posts. Post on NextDoor 1–2x per week in neighbor tone.</td>
+        <td>30 min/day</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note gold" style="margin-top:20px;"><h4>What Runs Automatically (Zero Macy Time)</h4><p>Active Campaign fires Email 1 (on registration), Email 2 (21 days pre-camp), Email 3 (5 days pre-camp), Email 4 (2 wks pre-camp), and Email 5 (post-week upsell) automatically for every family all summer. Google Ads and Meta ads run continuously within budget. <strong>Once set up correctly in April, none of these need weekly attention.</strong></p></div>
+</section>
 
 </main>
 </div>
@@ -865,26 +758,16 @@ body{font-family:'Jost',sans-serif;background:var(--off);color:var(--text);-webk
 function go(id, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelectorAll('.mob-nav a').forEach(n => n.classList.remove('active'));
   document.getElementById('p-' + id).classList.add('active');
   el.classList.add('active');
-  document.querySelector('.main').scrollTo({top:0,behavior:'smooth'});
+  document.querySelector('.main').scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-function showOwner(id, btn, cls) {
-  document.querySelectorAll('.task-view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.otab').forEach(t => t.classList.remove('active'));
-  document.getElementById('ov-' + id).classList.add('active');
-  btn.classList.add('active');
-  if(cls) btn.classList.add(cls);
+function tick(item) {
+  const cb = item.querySelector('.task-cb');
+  const text = item.querySelector('.task-text');
+  cb.classList.toggle('checked');
+  text.classList.toggle('done');
 }
-
-// make checkboxes work visually
-document.querySelectorAll('.task-check').forEach(cb => {
-  cb.addEventListener('change', function() {
-    this.closest('.task').style.opacity = this.checked ? '0.45' : '1';
-  });
-});
 </script>
 </body>
 </html>
